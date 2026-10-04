@@ -1,352 +1,875 @@
-theme: ''
-styleConstants:
-  - IconBackground= <ImageBrush Stretch="UniformtoFill" ImageSource="https://raw.githubusercontent.com/ramensoftware/windows-11-taskbar-styling-guide/refs/heads/main/Themes/Minecraft%20Hotbar/Assets/hotbar.png" />
-  - ActiveBackground= <ImageBrush Stretch="UniformtoFill" ImageSource="https://raw.githubusercontent.com/ramensoftware/windows-11-taskbar-styling-guide/refs/heads/main/Themes/Minecraft%20Hotbar/Assets/hotbaractive.png" />
-controlStyles:
-  - target: Grid#IconPanel@CommonStates > Image#Icon, Taskbar.TaskListLabeledButtonPanel#IconPanel@CommonStates > Image#Icon
-    styles:
-      - Margin=5.5,0,-5.5,0
-      - Margin@ActiveNormal=5.5,0,-5.5,0
-      - Margin@ActivePointerOver=5.5,0,-5.5,0
-      - Margin@InactivePointerOver=7,0,-7,0
-      - Margin@ActivePressed=5.5,0,-5.5,0
-  - target: Grid#RootGrid > Taskbar.TaskbarBackground > Grid
-    styles:
-      - Background:=transparent
-  - target: Taskbar.TaskbarFrame > Grid#RootGrid
-    styles:
-      - Background:=transparent
-  - target: Taskbar.TaskbarFrame > Grid#RootGrid > Taskbar.TaskbarBackground#BackgroundControl > Grid > Rectangle#BackgroundFill
-    styles:
-      - Margin=0,9,0,9
-      - Fill:=<WindhawkBlur BlurAmount="4" />
-  - target: Rectangle#BackgroundStroke
-    styles:
-      - Fill=Transparent
-  - target: Grid#IconPanel, Taskbar.TaskListButtonPanel
-    styles:
-      - MinWidth=55
-  - target: Grid#IconPanel, Taskbar.TaskListLabeledButtonPanel
-    styles:
-      - MinWidth=55
-  - target: SearchUx.SearchUI.SearchButtonControl > Grid > SearchUx.SearchUI.SearchIconButton > SearchUx.SearchUI.SearchButtonRootGrid#SearchBoxButtonRootPanel
-    styles:
-      - MinWidth=55
-  - target: Grid#IconPanel@CommonStates > Border#BackgroundElement, Taskbar.TaskListButtonPanel@CommonStates > Grid > Border#BackgroundElement, Taskbar.TaskListButtonPanel@CommonStates > Border#BackgroundElement
-    styles:
-      - CornerRadius=0
-      - Margin=0,5.5,0,5.5
-  - target: Taskbar.TaskbarFrame
-    styles:
-      - Width=Auto
-      - MaxWidth={{containerGridWidth>0?containerGridWidth:`Infinity`}}
-      - Height=70
-      - MinWidth:=100
-      - Grid.Column=1
-      - HorizontalAlignment=Center
-  - target: Taskbar.TaskbarFrame > Grid#RootGrid
-    styles:
-      - Transitions:=<TransitionCollection><EntranceThemeTransition HorizontalOffset="0" VerticalOffset="0" /></TransitionCollection>
-      - Margin=0,4,0,-4
-      - Padding=20,0,20,0
-  - target: SystemTray.SystemTrayFrame
-    styles:
-      - Height=70
-      - CornerRadius=0
-      - Grid.Column=3
-      - Width=Auto
-      - HorizontalAlignment=Right
-      - Margin=0,0,8,0
-  - target: StackPanel#SystemTrayFrameGrid, Grid#SystemTrayFrameGrid
-    styles:
-      - Background:=<WindhawkBlur BlurAmount="4" />
-      - Height=55
-      - Margin=0,-7,0,7
-      - VerticalAlignment=Bottom
-      - BorderBrush=transparent
-      - BorderThickness=0
-      - CornerRadius=0
-      - Visibility=Visible
-  - target: ':root > ScrollViewer > ScrollContentPresenter > Border > Grid'
-    styles:
-      - ColumnDefinitions:=<ColumnDefinitionCollection><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/></ColumnDefinitionCollection>
-      - ActualWidth=>containerGridWidth
-  - target: Grid#IconPanel@RunningIndicatorStates > Rectangle#RunningIndicator, Taskbar.TaskListLabeledButtonPanel@RunningIndicatorStates > Rectangle#RunningIndicator
-    styles:
-      - Fill:=#90ffffff
-      - RadiusX=0
-      - RadiusY=0
-      - Height=2
-      - Width=4
-      - Width@ActiveRunningIndicator=8
-      - Fill@ActiveRunningIndicator=#60CDFF
-      - VerticalAlignment=Bottom
-      - Margin=6,0,-6,9
-      - Margin@ActiveRunning=20,0,-20,9
-  - target: Taskbar.ExperienceToggleButton#LaunchListButton[AutomationProperties.AutomationId=StartButton] > Taskbar.TaskListButtonPanel > Grid > Microsoft.UI.Xaml.Controls.AnimatedVisualPlayer#Icon, Taskbar.ExperienceToggleButton#LaunchListButton[AutomationProperties.AutomationId=StartButton] > Taskbar.TaskListButtonPanel > Microsoft.UI.Xaml.Controls.AnimatedVisualPlayer#Icon
-    styles:
-      - Visibility=0
-  - target: Border#MultiWindowElement
-    styles:
-      - Visibility=Collapsed
-  - target: Taskbar.ExperienceToggleButton#LaunchListButton[AutomationProperties.Name=Task View] > Taskbar.TaskListButtonPanel > Grid > Microsoft.UI.Xaml.Controls.AnimatedVisualPlayer, Taskbar.ExperienceToggleButton#LaunchListButton[AutomationProperties.Name=Task View] > Taskbar.TaskListButtonPanel > Microsoft.UI.Xaml.Controls.AnimatedVisualPlayer
-    styles:
-      - Visibility=0
-  - target: Taskbar.ExperienceToggleButton#LaunchListButton[AutomationProperties.Name=Task View] > Taskbar.TaskListButtonPanel > Grid > Viewbox, Taskbar.ExperienceToggleButton#LaunchListButton[AutomationProperties.Name=Task View] > Taskbar.TaskListButtonPanel > Viewbox
-    styles:
-      - Visibility=0
-  - target: SearchUx.SearchUI.SearchButtonControl > Grid > SearchUx.SearchUI.SearchIconButton > SearchUx.SearchUI.SearchButtonRootGrid#SearchBoxButtonRootPanel > Grid > Microsoft.UI.Xaml.Controls.AnimatedVisualPlayer, SearchUx.SearchUI.SearchButtonControl > Grid > SearchUx.SearchUI.SearchIconButton > SearchUx.SearchUI.SearchButtonRootGrid#SearchBoxButtonRootPanel > Microsoft.UI.Xaml.Controls.AnimatedVisualPlayer
-    styles:
-      - Visibility=0
-  - target: Grid#IconPanel@CommonStates > Border#BackgroundElement, Taskbar.TaskListLabeledButtonPanel@CommonStates > Border#BackgroundElement
-    styles:
-      - // [Normal ICON BG]
-      - CornerRadius=0
-      - Margin=-3,3.5,-3,3.5
-      - Background:=$IconBackground
-      - Background@InactivePointerOver:=$ActiveBackground
-      - Background@ActiveNormal:=$ActiveBackground
-      - Background@ActivePointerOver:=$ActiveBackground
-      - Background@MultiWindowPointerOver:=$ActiveBackground
-      - BorderThickness=0
-  - target: Grid#IconPanel@CommonStates, Taskbar.TaskListLabeledButtonPanel@CommonStates
-    styles:
-      - Width@InactivePointerOver=59
-      - Width@MultiWindowPointerOver=59
-      - Margin@InactivePointerOver=0,-5,0,-5
-      - Margin@MultiWindowPointerOver=0,-5,0,-5
-      - Width@ActiveNormal=63
-      - Width@ActivePointerOver=63
-      - Width@MultiWindowPointerOver=63
-      - Width@ActivePressed=63
-      - Margin@ActivePointerOver=0,-5,0,-5
-      - Margin@ActivePressed=0,-5,0,-5
-      - Margin@ActiveNormal=0,-5,0,-5
-  - target: Grid#IconPanel@CommonStates > Border#BackgroundElement, Taskbar.TaskListButtonPanel@CommonStates > Grid > Border#BackgroundElement, Taskbar.TaskListButtonPanel@CommonStates > Border#BackgroundElement
-    styles:
-      - // [TaskView and Start ICON BG]
-      - Canvas.ZIndex=0
-      - CornerRadius=0
-      - Margin=-3,3.5,-3,3.5
-      - Background:=$IconBackground
-      - Background@InactivePointerOver:=$ActiveBackground
-      - BorderThickness=0
-  - target: Grid#IconPanel@CommonStates, Taskbar.TaskListButtonPanel@CommonStates
-    styles:
-      - Canvas.ZIndex=0
-      - Width@InactivePointerOver=59
-      - Margin@InactivePointerOver=0,-5,0,-5
-  - target: SearchUx.SearchUI.SearchButtonControl > Grid > SearchUx.SearchUI.SearchIconButton > SearchUx.SearchUI.SearchButtonRootGrid#SearchBoxButtonRootPanel@CommonStates > Grid > Border#BackgroundElement, SearchUx.SearchUI.SearchButtonControl > Grid > SearchUx.SearchUI.SearchIconButton > SearchUx.SearchUI.SearchButtonRootGrid#SearchBoxButtonRootPanel@CommonStates > Border#BackgroundElement
-    styles:
-      - // [TaskView and Start ICON BG]
-      - CornerRadius=0
-      - Margin=-3,3.5,-3,3.5
-      - Background:=$IconBackground
-      - Background@InactivePointerOver:=$ActiveBackground
-      - BorderThickness=0
-  - target: SearchUx.SearchUI.SearchButtonControl > Grid > SearchUx.SearchUI.SearchIconButton > SearchUx.SearchUI.SearchButtonRootGrid#SearchBoxButtonRootPanel@CommonStates
-    styles:
-      - Canvas.ZIndex=0
-      - Width@InactivePointerOver=59
-      - Margin@InactivePointerOver=0,-5,0,-5
-  - target: SystemTray.SystemTrayFrame > StackPanel#SystemTrayFrameGrid > SystemTray.Stack#NotifyIconStack > Grid#Content > SystemTray.StackListView#IconStack > ItemsPresenter > StackPanel > ContentPresenter > SystemTray.ChevronIconView > Grid#ContainerGrid > ContentPresenter#ContentPresenter > Grid#ContentGrid, SystemTray.SystemTrayFrame > Grid#SystemTrayFrameGrid > SystemTray.Stack#NotifyIconStack > Grid#Content > SystemTray.StackListView#IconStack > ItemsPresenter > StackPanel > ContentPresenter > SystemTray.ChevronIconView > Grid#ContainerGrid > ContentPresenter#ContentPresenter > Grid#ContentGrid
-    styles:
-      - CornerRadius=0
-      - Height=55
-      - Width=55
-      - Width@PointerOver=59
-      - CornerRadius=0
-      - Background:=$IconBackground
-      - BorderThickness=0
-  - target: SystemTray.LanguageTextIconContent > Windows.UI.Xaml.Controls.Grid#ContainerGrid
-    styles:
-      - CornerRadius=0
-      - Height=55
-      - Width=55
-      - Margin=-1,0,-13,0
-      - Background:=$IconBackground
-      - BorderThickness=0
-  - target: SystemTray.StackListView#IconStack > ItemsPresenter > StackPanel > ContentPresenter > SystemTray.IconView#SystemTrayIcon > Grid#ContainerGrid > Grid#ContentGrid > SystemTray.TextIconContent > Grid#ContainerGrid, SystemTray.StackListView#IconStack > ItemsPresenter > StackPanel > ContentPresenter > SystemTray.IconView#SystemTrayIcon > Grid#ContainerGrid > ContentPresenter#ContentPresenter > Grid#ContentGrid > SystemTray.TextIconContent > Grid#ContainerGrid
-    styles:
-      - CornerRadius=0
-      - Height=55
-      - Width=55
-      - Background:=$IconBackground
-      - BorderThickness=0
-  - target: SystemTray.Stack#ShowDesktopStack
-    styles:
-      - Visibility=1
-      - CornerRadius=0
-      - Height=55
-      - Width=55
-      - Background:=$IconBackground
-      - BorderThickness=0
-      - // System Tray > Show Desktop Button
-  - target: SystemTray.OmniButton#ControlCenterButton
-    styles:
-      - Margin=9,0,0,0
-  - target: SystemTray.OmniButton#ControlCenterButton > Grid > ContentPresenter > ItemsPresenter > StackPanel > ContentPresenter[1] > SystemTray.IconView > Grid > Grid
-    styles:
-      - Margin=-3,0,-8,0
-      - Visibility=visible
-      - CornerRadius=0
-      - Height=55
-      - Width=55
-      - Background:=$IconBackground
-      - BorderThickness=0
-      - // [Tray Wifi Icon. Set Visibility=Collapsed to Remove it, and Visibility=Visible to bring it back]
-  - target: SystemTray.OmniButton#ControlCenterButton > Grid > ContentPresenter > ItemsPresenter > StackPanel > ContentPresenter[2] > SystemTray.IconView > Grid > Grid
-    styles:
-      - Margin=8,0,-8,0
-      - Visibility=1
-      - CornerRadius=0
-      - Height=55
-      - Width=55
-      - Background:=$IconBackground
-      - BorderThickness=0
-      - // [Tray Audio Icon. Set Visibility=Collapsed to Remove it, and Visibility=Visible to bring it back]
-  - target: SystemTray.OmniButton#ControlCenterButton > Grid > ContentPresenter > ItemsPresenter > StackPanel > ContentPresenter[3] > SystemTray.IconView > Grid > Grid
-    styles:
-      - Margin=8,0,-8,0
-      - Visibility=Visible
-      - CornerRadius=0
-      - Height=55
-      - Width=55
-      - Background:=$IconBackground
-      - BorderThickness=0
-      - // [Tray Battery Icon. Set Visibility=Collapsed to Remove it, and Visibility=Visible to bring it back]
-  - target: SystemTray.SystemTrayFrame > StackPanel#SystemTrayFrameGrid > SystemTray.OmniButton#ControlCenterButton > Grid > ContentPresenter#ContentPresenter > ItemsPresenter > StackPanel > ContentPresenter > SystemTray.IconView#SystemTrayIcon > Grid#ContainerGrid > Grid#ContentGrid > SystemTray.BatteryIconContent > Grid#ContainerGrid > StackPanel, SystemTray.SystemTrayFrame > Grid#SystemTrayFrameGrid > SystemTray.OmniButton#ControlCenterButton > Grid > ContentPresenter#ContentPresenter > ItemsPresenter > StackPanel > ContentPresenter > SystemTray.IconView#SystemTrayIcon > Grid#ContainerGrid > Grid#ContentGrid > SystemTray.BatteryIconContent > Grid#ContainerGrid > StackPanel
-    styles:
-      - HorizontalAlignment=Center
-  - target: SystemTray.AdaptiveTextBlock > TextBlock
-    styles:
-      - FontSize=24
-  - target: SystemTray.SystemTrayFrame > StackPanel#SystemTrayFrameGrid > SystemTray.Stack#NotifyIconStack > Grid#Content > SystemTray.StackListView#IconStack > ItemsPresenter > StackPanel > ContentPresenter > SystemTray.ChevronIconView > Grid#ContainerGrid > ContentPresenter#ContentPresenter > Grid#ContentGrid > SystemTray.TextIconContent > Grid#ContainerGrid > SystemTray.AdaptiveTextBlock#Base > TextBlock#InnerTextBlock, SystemTray.SystemTrayFrame > Grid#SystemTrayFrameGrid > SystemTray.Stack#NotifyIconStack > Grid#Content > SystemTray.StackListView#IconStack > ItemsPresenter > StackPanel > ContentPresenter > SystemTray.ChevronIconView > Grid#ContainerGrid > ContentPresenter#ContentPresenter > Grid#ContentGrid > SystemTray.TextIconContent > Grid#ContainerGrid > SystemTray.AdaptiveTextBlock#Base > TextBlock#InnerTextBlock
-    styles:
-      - FontSize=24
-      - Foreground=white
-  - target: TextBlock#DateInnerTextBlock
-    styles:
-      - FontWeight=Bold
-      - HorizontalAlignment=Center
-      - Margin=0,9,0,-9
-      - Foreground=White
-      - Visibility=visible
-      - RenderTransform:=<TranslateTransform X="0" Y="-9"/>
-      - FontSize=11
-      - FontFamily=vivo Sans EN VF
-  - target: SystemTray.ChevronIconView > Grid#ContainerGrid > ContentPresenter#ContentPresenter > Grid#ContentGrid > SystemTray.TextIconContent
-    styles:
-      - Foreground=white
-      - FontWeight=bold
-      - FontSize=24
-  - target: TextBlock#TimeInnerTextBlock
-    styles:
-      - Foreground=white
-      - Width=Auto
-      - FontWeight=Bold
-      - FontSize=13
-      - HorizontalAlignment=Center
-      - Margin=0,-4,0,4
-  - target: SystemTray.SystemTrayFrame > StackPanel#SystemTrayFrameGrid > SystemTray.OmniButton#ControlCenterButton > Grid > ContentPresenter#ContentPresenter > ItemsPresenter > StackPanel > ContentPresenter > SystemTray.IconView#SystemTrayIcon > Grid#ContainerGrid > Grid#ContentGrid > SystemTray.TextIconContent > Grid#ContainerGrid > SystemTray.AdaptiveTextBlock#Base > TextBlock#InnerTextBlock, SystemTray.SystemTrayFrame > Grid#SystemTrayFrameGrid > SystemTray.OmniButton#ControlCenterButton > Grid > ContentPresenter#ContentPresenter > ItemsPresenter > StackPanel > ContentPresenter > SystemTray.IconView#SystemTrayIcon > Grid#ContainerGrid > Grid#ContentGrid > SystemTray.TextIconContent > Grid#ContainerGrid > SystemTray.AdaptiveTextBlock#Base > TextBlock#InnerTextBlock
-    styles:
-      - Foreground=white
-      - FontSize=24
-  - target: TextBlock#SearchBoxTextBlock
-    styles:
-      - FontSize=12
-      - Foreground=White
-  - target: SystemTray.AdaptiveTextBlock#LanguageInnerTextBlock > TextBlock#InnerTextBlock
-    styles:
-      - FontSize=13
-      - FontWeight=Bold
-  - target: SystemTray.IconView#SystemTrayIcon > Grid#ContainerGrid > Grid#ContentGrid > SystemTray.DateTimeIconContent > Grid#ContainerGrid
-    styles:
-      - CornerRadius=0
-      - BorderThickness=0
-      - Background:=<ImageBrush ImageSource="https://raw.githubusercontent.com/ramensoftware/windows-11-taskbar-styling-guide/refs/heads/main/Themes/Minecraft%20Hotbar/Assets/hotbar.png" />
-      - Height=55
-      - Margin=1,0,-5,0
-      - Width=84
-  - target: SystemTray.SystemTrayFrame > StackPanel#SystemTrayFrameGrid > SystemTray.Stack#NonActivatableStack > Grid#Content > SystemTray.StackListView#IconStack > ItemsPresenter > StackPanel > ContentPresenter > SystemTray.IconView#SystemTrayIcon > Grid#ContainerGrid > Border#BackgroundBorder, SystemTray.SystemTrayFrame > Grid#SystemTrayFrameGrid > SystemTray.Stack#NonActivatableStack > Grid#Content > SystemTray.StackListView#IconStack > ItemsPresenter > StackPanel > ContentPresenter > SystemTray.IconView#SystemTrayIcon > Grid#ContainerGrid > Border#BackgroundBorder
-    styles:
-      - Background:=Transparent
-      - BorderThickness=0
-  - target: SystemTray.OmniButton#ControlCenterButton > Grid > Border#BackgroundBorder
-    styles:
-      - Background:=Transparent
-      - BorderThickness=0
-  - target: Taskbar.TaskbarBackground#HoverFlyoutBackgroundControl > Grid > Rectangle#BackgroundFill
-    styles:
-      - Canvas.ZIndex=0
-      - Fill:=
-      - Stroke:=<WindhawkBlur BlurAmount="8" TintColor="#30ffffff"/>
-      - StrokeThickness=5
-      - RadiusX=5
-      - RadiusY=5
-  - target: Taskbar.FlyoutFrame > Windows.UI.Xaml.Controls.Canvas#HoverFlyoutCanvas > Windows.UI.Xaml.Controls.Grid#HoverFlyoutGrid > Windows.UI.Xaml.Controls.ContentPresenter#HoverFlyoutContent > Taskbar.TaskItemThumbnailList > Microsoft.UI.Xaml.Controls.ItemsRepeater#TaskItemThumbnailListRepeater > Taskbar.TaskItemThumbnailView > Windows.UI.Xaml.Controls.Grid > Windows.UI.Xaml.Controls.Border#BackgroundBorder
-    styles:
-      - VerticalAlignment=Bottom
-      - Canvas.ZIndex=1
-      - Background:=<WindhawkBlur BlurAmount="5" TintColor="#761E1E1E"/>
-      - Height=25
-      - CornerRadius=0,0,15,15
-      - Margin=5,0,5,0
-  - target: Border#HoverFlyoutBackground
-    styles:
-      - Margin=4,36,4,0
-      - Canvas.ZIndex=1
-      - Width=Auto
-      - Background:=Transparent
-      - BorderThickness=0
-      - CornerRadius=5
-  - target: Microsoft.UI.Xaml.Controls.ItemsRepeater#ThumbBarRepeater > Taskbar.ThumbBarButton#ThumbBarButton > Windows.UI.Xaml.Controls.ContentPresenter#BorderElement
-    styles:
-      - Background:=<WindhawkBlur BlurAmount="8" TintColor="#761E1E1E"/>
-      - Margin=0,-20,0,20
-  - target: Microsoft.UI.Xaml.Controls.ItemsRepeater#IconsRepeater > Windows.UI.Xaml.Controls.Image
-    styles:
-      - Visibility=Collapsed
-  - target: Windows.UI.Xaml.Controls.Button#CloseButton
-    styles:
-      - Grid.ColumnSpan=1
-      - Grid.RowSpan=1
-      - Canvas.ZIndex=1
-      - CornerRadius=0
-      - Width=28
-      - Height=28
-      - Margin=-18,40,15,-40
-      - Background:=#1D1D1D
-      - Foreground=white
-      - BorderThickness=3
-      - BorderBrush:=<LinearGradientBrush StartPoint="-0.07,-0.06" EndPoint="1.02,1.04"><GradientStop Offset="0.49" Color="#000000"/><GradientStop Offset="0.53" Color="#3A3636"/></LinearGradientBrush>
-  - target: Taskbar.FlyoutFrame > Windows.UI.Xaml.Controls.Canvas#HoverFlyoutCanvas > Windows.UI.Xaml.Controls.Grid#HoverFlyoutGrid > Windows.UI.Xaml.Controls.ContentPresenter#HoverFlyoutContent > Taskbar.TaskItemThumbnailList > Microsoft.UI.Xaml.Controls.ItemsRepeater#TaskItemThumbnailListRepeater > Taskbar.TaskItemThumbnailView > Windows.UI.Xaml.Controls.Grid > Windows.UI.Xaml.Controls.TextBlock#DisplayNameTextBlock
-    styles:
-      - Foreground=white
-      - Grid.ColumnSpan=2
-      - Grid.RowSpan=2
-      - VerticalAlignment=bottom
-      - HorizontalAlignment=Center
-      - Margin=0,-5,0,5
-      - Canvas.ZIndex=1
-  - target: ScrollViewer > ScrollContentPresenter > Border > SystemTray.NotificationAreaOverflow > Grid#OverflowRootGrid > Border#OverflowFlyoutBackgroundBorder
-    styles:
-      - Background:=<WindhawkBlur BlurAmount="4" />
-  - target: SystemTray.OmniButton#NotificationCenterButton > Grid > ContentPresenter#ContentPresenter > ItemsPresenter > StackPanel > ContentPresenter > SystemTray.IconView#SystemTrayIcon > Grid#ContainerGrid > Grid#ContentGrid > SystemTray.TextIconContent > Grid#ContainerGrid
-    styles:
-      - Visibility=1
-  - target: ScrollViewer > ScrollContentPresenter > Border > SystemTray.NotificationAreaOverflow > Grid#OverflowRootGrid > ItemsControl > ItemsPresenter > WrapGrid > ContentPresenter > SystemTray.NotifyIconView > Grid#ContainerGrid > ContentPresenter#ContentPresenter > Grid#ContentGrid > SystemTray.ImageIconContent > Grid#ContainerGrid
-    styles:
-      - Background:=$IconBackground
-  - target: ScrollViewer > ScrollContentPresenter > Border > Grid > SystemTray.SystemTrayFrame > StackPanel#SystemTrayFrameGrid > SystemTray.NotificationAreaIcons#NotificationAreaIcons > ItemsPresenter > StackPanel > ContentPresenter > SystemTray.NotifyIconView#NotifyItemIcon > Grid#ContainerGrid > ContentPresenter#ContentPresenter > Grid#ContentGrid > SystemTray.ImageIconContent > Grid#ContainerGrid, ScrollViewer > ScrollContentPresenter > Border > Grid > SystemTray.SystemTrayFrame > Grid#SystemTrayFrameGrid > SystemTray.NotificationAreaIcons#NotificationAreaIcons > ItemsPresenter > StackPanel > ContentPresenter > SystemTray.NotifyIconView#NotifyItemIcon > Grid#ContainerGrid > ContentPresenter#ContentPresenter > Grid#ContentGrid > SystemTray.ImageIconContent > Grid#ContainerGrid
-    styles:
-      - Width=55
-      - Height=55
-      - Background:=$IconBackground
-  - target: ScrollViewer > ScrollContentPresenter > Border > Grid > Taskbar.TaskbarFrame > Grid#RootGrid > Microsoft.UI.Xaml.Controls.ItemsRepeater#TaskbarFrameRepeater > Taskbar.TaskListButton#TaskListButton > Grid#IconPanel > TextBlock#LabelControl, ScrollViewer > ScrollContentPresenter > Border > Grid > Taskbar.TaskbarFrame > Grid#RootGrid > Microsoft.UI.Xaml.Controls.ItemsRepeater#TaskbarFrameRepeater > Taskbar.TaskListButton#TaskListButton > Taskbar.TaskListLabeledButtonPanel#IconPanel > TextBlock#LabelControl
-    styles:
-      - Visibility=1
-themeResourceVariables:
-  - ''
-clickThroughTaskbar: 0
-xamlDiagnosticsHandling: alert
+// ==WindhawkMod==
+// @id              minecraft-hotbar-win10-fullbar
+// @name            Minecraft Hotbar - Windows 10 (fullbar)
+// @description     Minecraft-style slots on a transparent Windows 10 taskbar - fullbar variant: buttons stay on the left (experimental)
+// @version         0.6.1
+// @author          BitRize
+// @include         explorer.exe
+// @architecture    x86-64
+// @compilerOptions -lgdi32 -lshell32 -lmsimg32
+// ==/WindhawkMod==
+
+// ==WindhawkModReadme==
+/*
+# Minecraft Hotbar - Windows 10 - fullbar (experimental)
+
+Variant "fullbar": the app buttons stay where Windows puts them (left,
+next to Start). See also the "splitbar" variant, which centers them.
+
+Makes the Windows 10 taskbar background transparent and draws Minecraft-style
+slots behind the taskbar buttons, the Start button, the notification-area
+icons and the clock/date. The active window gets a white "selected slot" frame.
+
+## Credits
+- The hook point (`CTaskBtnGroup::_DrawBar`) and the render-info layout come
+  from the "Classic Taskbar Fix" mod by aubymori
+  (https://winclassic.net/thread/1889/classic-taskbar-fix). This is a
+  derivative work; the original author keeps credit for the technique.
+- Taskbar transparency uses the undocumented `SetWindowCompositionAttribute`
+  API, the same approach used by tools such as TranslucentTB.
+- The slot colors and frame thickness were measured from a screenshot of the
+  author's Windows 11 "Minecraft Hotbar" Taskbar Styler setup (theme by
+  WasiXGamer). Colors are approximations.
+- Written with AI assistance (Claude).
+
+## Status
+- Experimental. Target: Windows 10 22H2 (19045.x).
+- Do not run together with "Classic Taskbar Fix" or with the other variant
+  (fullbar / splitbar): they use the same hook.
+
+## How the Start / tray / clock frames work
+Those are separate windows that this mod cannot paint on directly. A small
+click-through helper window is placed just *below* the (transparent) taskbar
+and draws the slots there. It hides itself when a full-screen app is running.
+Tray icons are narrow on Windows 10 (about 22-25 px each), so neighbouring
+icons are grouped until a slot is about as wide as the taskbar is tall. The
+language indicator and the clock share one slot, and the notification (bell)
+button gets its own. A setting can merge the whole tray into a single slot.
+
+## Recommended taskbar settings
+Settings > Personalization > Taskbar > "Combine taskbar buttons":
+"Always, hide labels", so each button is icon-only.
+
+## Known limitations
+- Only the primary taskbar gets the Start/tray/clock frames.
+- Works with the taskbar at the top or bottom of the screen.
+- Transparency and helper window are refreshed every 250 ms.
+*/
+// ==/WindhawkModReadme==
+
+// ==WindhawkModSettings==
+/*
+- frameStartButton: true
+  $name: Frame around the Start button
+- frameTray: true
+  $name: Frames around the notification-area icons
+- frameClock: true
+  $name: Frame around the clock/date
+- singleTraySlot: false
+  $name: One single slot for the whole tray
+  $description: Off = several slots (about 2 icons each). On = chevron, icons, language, clock and notifications all inside one big slot.
+- squareAppSlots: false
+  $name: Square app slots (with gaps)
+  $description: Off = slots touch each other like the real hotbar (but are slightly wider than tall on Windows 10).
+*/
+// ==/WindhawkModSettings==
+
+#include <windhawk_utils.h>
+#include <windows.h>
+#include <commctrl.h>
+#include <shellapi.h>
+
+// ===================== Settings =====================
+
+static bool g_frameStart = true;
+static bool g_frameTray = true;
+static bool g_frameClock = true;
+static bool g_squareAppSlots = false;
+static bool g_singleTraySlot = false;
+
+// ===================== Slot style (measured from the Win11 reference) =====================
+// Reference slot is 55x55 px. Thicknesses below are in that 55px space and are
+// scaled to the real slot size by U().
+
+static const COLORREF kEdgeTop     = RGB(0xAB, 0xAB, 0xAB);
+static const COLORREF kEdgeLeft    = RGB(0x93, 0x93, 0x93);
+static const COLORREF kEdgeMid     = RGB(0x5D, 0x5D, 0x5D);
+static const COLORREF kEdgeInner   = RGB(0x51, 0x52, 0x52);
+static const COLORREF kEdgeBottom  = RGB(0x7E, 0x7E, 0x7E);
+static const COLORREF kSelectedCol = RGB(0xFF, 0xFF, 0xFF);
+
+// Interior is translucent dark (the wallpaper shows through a little).
+static const COLORREF kInterior        = RGB(0x18, 0x1E, 0x10);
+static const int      kInteriorAlpha   = 0xE0;
+static const COLORREF kInteriorPressed = RGB(0x0A, 0x0C, 0x08);
+static const COLORREF kShadow          = RGB(0x02, 0x08, 0x0C);
+static const int      kShadowAlpha     = 0xE6;
+
+static int U(int t, int side) {
+    int v = (t * side + 27) / 55;
+    return v < 1 ? 1 : v;
+}
+
+static DWORD PremulARGB(COLORREF c, int a) {
+    DWORD r = (DWORD)GetRValue(c) * a / 255;
+    DWORD g = (DWORD)GetGValue(c) * a / 255;
+    DWORD b = (DWORD)GetBValue(c) * a / 255;
+    return ((DWORD)a << 24) | (r << 16) | (g << 8) | b;
+}
+
+// Square slot centered in rc.
+static RECT SquareSlot(const RECT &rc) {
+    int w = rc.right - rc.left;
+    int h = rc.bottom - rc.top;
+    int minSide = (w < h) ? w : h;
+    int side = minSide - 2;
+    if (side < 8) {
+        side = minSide;
+    }
+    RECT slot;
+    slot.left = rc.left + (w - side) / 2;
+    slot.top = rc.top + (h - side) / 2;
+    slot.right = slot.left + side;
+    slot.bottom = slot.top + side;
+    return slot;
+}
+
+// App/Start slot: touching neighbours (hotbar strip) or squares with gaps.
+static RECT AppSlot(const RECT &rc) {
+    return g_squareAppSlots ? SquareSlot(rc) : rc;
+}
+
+// ===================== Slot rendering into a premultiplied ARGB buffer =====================
+
+static void PixelFill(DWORD *px, int bw, int bh, RECT r, DWORD value) {
+    if (r.left < 0) r.left = 0;
+    if (r.top < 0) r.top = 0;
+    if (r.right > bw) r.right = bw;
+    if (r.bottom > bh) r.bottom = bh;
+    if (r.right <= r.left || r.bottom <= r.top) {
+        return;
+    }
+    for (int y = r.top; y < r.bottom; y++) {
+        DWORD *row = px + (size_t)y * bw;
+        for (int x = r.left; x < r.right; x++) {
+            row[x] = value;
+        }
+    }
+}
+
+// Paints one concentric ring (per-side thickness and color), then shrinks rc.
+static void PaintRing(DWORD *px, int bw, int bh, RECT &rc,
+                      int t, int l, int b, int r,
+                      COLORREF ct, COLORREF cl, COLORREF cb, COLORREF cr) {
+    RECT s;
+    if (t > 0) {
+        s = { rc.left, rc.top, rc.right, rc.top + t };
+        PixelFill(px, bw, bh, s, PremulARGB(ct, 255));
+    }
+    if (b > 0) {
+        s = { rc.left, rc.bottom - b, rc.right, rc.bottom };
+        PixelFill(px, bw, bh, s, PremulARGB(cb, 255));
+    }
+    if (l > 0) {
+        s = { rc.left, rc.top + t, rc.left + l, rc.bottom - b };
+        PixelFill(px, bw, bh, s, PremulARGB(cl, 255));
+    }
+    if (r > 0) {
+        s = { rc.right - r, rc.top + t, rc.right, rc.bottom - b };
+        PixelFill(px, bw, bh, s, PremulARGB(cr, 255));
+    }
+    rc.left += l;
+    rc.top += t;
+    rc.right -= r;
+    rc.bottom -= b;
+}
+
+static void RenderSlot(DWORD *px, int bw, int bh, const RECT &slot, bool selected, bool pressed) {
+    int w = slot.right - slot.left;
+    int h = slot.bottom - slot.top;
+    if (w < 8 || h < 8) {
+        return;
+    }
+    int side = (w < h) ? w : h;
+
+    RECT rc = slot;
+
+    // Layer 1: light top/left edge, dark bottom/right edge (outermost).
+    PaintRing(px, bw, bh, rc, U(2, side), U(2, side), U(1, side), U(1, side),
+              kEdgeTop, kEdgeLeft, kEdgeMid, kEdgeMid);
+    // Layer 2: mid gray top/left, lighter gray bottom/right.
+    PaintRing(px, bw, bh, rc, U(2, side), U(2, side), U(3, side), U(3, side),
+              kEdgeMid, kEdgeMid, kEdgeBottom, kEdgeBottom);
+    // Layer 3: thin inner line on top/left only.
+    PaintRing(px, bw, bh, rc, U(1, side), U(1, side), 0, 0,
+              kEdgeInner, kEdgeInner, kEdgeInner, kEdgeInner);
+
+    // Active window: white inner frame (not part of the reference theme).
+    if (selected) {
+        int sel = U(2, side);
+        PaintRing(px, bw, bh, rc, sel, sel, sel, sel,
+                  kSelectedCol, kSelectedCol, kSelectedCol, kSelectedCol);
+    }
+
+    // Translucent dark interior.
+    PixelFill(px, bw, bh, rc, PremulARGB(pressed ? kInteriorPressed : kInterior, kInteriorAlpha));
+
+    // Inner shadow on top and left.
+    int sh = U(2, side);
+    RECT s;
+    s = { rc.left, rc.top, rc.right, rc.top + sh };
+    PixelFill(px, bw, bh, s, PremulARGB(kShadow, kShadowAlpha));
+    s = { rc.left, rc.top + sh, rc.left + sh, rc.bottom };
+    PixelFill(px, bw, bh, s, PremulARGB(kShadow, kShadowAlpha));
+}
+
+// ===================== Slots on the taskbar itself (app buttons) =====================
+
+typedef struct tagBUTTONRENDERINFOSTATES {
+    char data[12];
+} BUTTONRENDERINFOSTATES, *PBUTTONRENDERINFOSTATES;
+
+// GDI writes alpha = 0 on the transparent taskbar, which made colors add to the
+// wallpaper instead of covering it. AlphaBlend with a premultiplied 32-bit
+// bitmap writes proper alpha.
+static bool BlendSlotOnDC(HDC hdc, const RECT &slot, bool selected, bool pressed) {
+    int w = slot.right - slot.left;
+    int h = slot.bottom - slot.top;
+    if (w <= 0 || h <= 0) {
+        return false;
+    }
+
+    BITMAPINFO bi = {};
+    bi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+    bi.bmiHeader.biWidth = w;
+    bi.bmiHeader.biHeight = -h;
+    bi.bmiHeader.biPlanes = 1;
+    bi.bmiHeader.biBitCount = 32;
+    bi.bmiHeader.biCompression = BI_RGB;
+
+    void *bits = NULL;
+    HBITMAP bmp = CreateDIBSection(NULL, &bi, DIB_RGB_COLORS, &bits, NULL, 0);
+    if (!bmp || !bits) {
+        if (bmp) DeleteObject(bmp);
+        return false;
+    }
+
+    HDC mem = CreateCompatibleDC(hdc);
+    if (!mem) {
+        DeleteObject(bmp);
+        return false;
+    }
+
+    HGDIOBJ oldBmp = SelectObject(mem, bmp);
+    ZeroMemory(bits, (size_t)w * h * 4);
+
+    RECT local = { 0, 0, w, h };
+    RenderSlot((DWORD *)bits, w, h, local, selected, pressed);
+
+    BLENDFUNCTION blend = {};
+    blend.BlendOp = AC_SRC_OVER;
+    blend.SourceConstantAlpha = 255;
+    blend.AlphaFormat = AC_SRC_ALPHA;
+
+    BOOL ok = AlphaBlend(hdc, slot.left, slot.top, w, h, mem, 0, 0, w, h, blend);
+
+    SelectObject(mem, oldBmp);
+    DeleteDC(mem);
+    DeleteObject(bmp);
+    return ok != FALSE;
+}
+
+typedef void (__cdecl *CTaskBtnGroup__DrawBar_t)(void *, HDC, void *, void *);
+CTaskBtnGroup__DrawBar_t CTaskBtnGroup__DrawBar_orig;
+
+void __cdecl CTaskBtnGroup__DrawBar_hook(
+    void *pThis,
+    HDC hDC,
+    void *pRenderInfo,
+    void *pRenderStates
+) {
+    if (!hDC || !pRenderInfo || !pRenderStates) {
+        CTaskBtnGroup__DrawBar_orig(pThis, hDC, pRenderInfo, pRenderStates);
+        return;
+    }
+
+    // Destination rect lives at offset +4 of the render info (per aubymori).
+    const RECT *prc = (const RECT *)((char *)pRenderInfo + 4);
+    const char *st = ((PBUTTONRENDERINFOSTATES)pRenderStates)->data;
+
+    bool selected = st[2] != 0;
+    bool pressed  = st[4] != 0;
+
+    if (prc->right - prc->left <= 0 || prc->bottom - prc->top <= 0) {
+        return;
+    }
+
+    RECT slot = AppSlot(*prc);
+    if (!BlendSlotOnDC(hDC, slot, selected, pressed)) {
+        // Could not draw our slot: let explorer draw the normal button.
+        CTaskBtnGroup__DrawBar_orig(pThis, hDC, pRenderInfo, pRenderStates);
+    }
+
+    // On success the original is intentionally not called: we replace the
+    // button background. Icon and text are drawn afterwards by explorer.
+}
+
+// ===================== Taskbar transparency =====================
+
+struct ACCENT_POLICY_ {
+    int AccentState;
+    int AccentFlags;
+    unsigned int GradientColor;  // AABBGGRR
+    int AnimationId;
+};
+
+struct WCA_DATA_ {
+    int Attribute;
+    PVOID Data;
+    SIZE_T SizeOfData;
+};
+
+typedef BOOL (WINAPI *SetWindowCompositionAttribute_t)(HWND, WCA_DATA_ *);
+
+static const int kWcaAccentPolicy = 19;
+// 2 = ACCENT_ENABLE_TRANSPARENTGRADIENT.
+static const int kAccentClear = 2;
+
+static void ApplyToWindow(SetWindowCompositionAttribute_t fn, HWND hwnd, bool clear) {
+    if (!hwnd) {
+        return;
+    }
+
+    DWORD wndPid = 0;
+    GetWindowThreadProcessId(hwnd, &wndPid);
+    if (wndPid != GetCurrentProcessId()) {
+        return;  // not the shell's explorer.exe instance
+    }
+
+    ACCENT_POLICY_ policy = {};
+    policy.AccentState = clear ? kAccentClear : 0;  // 0 = disabled/normal
+    policy.AccentFlags = 2;
+    policy.GradientColor = 0x00000000;              // fully transparent
+    policy.AnimationId = 0;
+
+    WCA_DATA_ data = {};
+    data.Attribute = kWcaAccentPolicy;
+    data.Data = &policy;
+    data.SizeOfData = sizeof(policy);
+
+    fn(hwnd, &data);
+}
+
+static void ApplyTransparency(bool clear) {
+    static SetWindowCompositionAttribute_t fn =
+        (SetWindowCompositionAttribute_t)GetProcAddress(
+            GetModuleHandleW(L"user32.dll"), "SetWindowCompositionAttribute");
+    if (!fn) {
+        return;
+    }
+
+    ApplyToWindow(fn, FindWindowW(L"Shell_TrayWnd", NULL), clear);
+
+    HWND secondary = NULL;
+    while ((secondary = FindWindowExW(NULL, secondary, L"Shell_SecondaryTrayWnd", NULL)) != NULL) {
+        ApplyToWindow(fn, secondary, clear);
+    }
+}
+
+// ===================== Notification-area cells =====================
+
+struct Cell {
+    RECT rc;
+    bool standalone;     // never merged with neighbours (language, clock)
+    wchar_t cls[32];
+};
+
+static const int kMaxCells = 32;
+static const int kMaxSlots = 24;
+
+static void AddCell(Cell *cells, int &n, const RECT &rc, bool standalone, const wchar_t *cls) {
+    if (n >= kMaxCells || rc.right - rc.left <= 0 || rc.bottom - rc.top <= 0) {
+        return;
+    }
+    cells[n].rc = rc;
+    cells[n].standalone = standalone;
+    lstrcpynW(cells[n].cls, cls, ARRAYSIZE(cells[n].cls));
+    n++;
+}
+
+static void AddToolbarCells(HWND toolbar, Cell *cells, int &n) {
+    DWORD_PTR res = 0;
+    if (!SendMessageTimeoutW(toolbar, TB_BUTTONCOUNT, 0, 0, SMTO_ABORTIFHUNG, 100, &res)) {
+        return;
+    }
+    int count = (int)res;
+    if (count < 0 || count > 64) {
+        return;
+    }
+
+    for (int i = 0; i < count; i++) {
+        TBBUTTON tb = {};
+        res = 0;
+        if (!SendMessageTimeoutW(toolbar, TB_GETBUTTON, (WPARAM)i, (LPARAM)&tb,
+                                 SMTO_ABORTIFHUNG, 100, &res) || !res) {
+            continue;
+        }
+        if (tb.fsState & TBSTATE_HIDDEN) {
+            continue;
+        }
+
+        RECT rc = {};
+        res = 0;
+        if (!SendMessageTimeoutW(toolbar, TB_GETITEMRECT, (WPARAM)i, (LPARAM)&rc,
+                                 SMTO_ABORTIFHUNG, 100, &res) || !res) {
+            continue;
+        }
+        MapWindowPoints(toolbar, NULL, (POINT *)&rc, 2);
+        AddCell(cells, n, rc, false, L"ToolbarButton");
+    }
+}
+
+static int CollectTrayCells(HWND tray, Cell *cells, bool wantTray, bool wantClock) {
+    int n = 0;
+    HWND notify = FindWindowExW(tray, NULL, L"TrayNotifyWnd", NULL);
+    if (!notify) {
+        return 0;
+    }
+
+    RECT notifyRc = {};
+    GetWindowRect(notify, &notifyRc);
+    LONG boundary = notifyRc.right;  // right limit of the notification area
+
+    // Every visible direct child, including ignored ones (for the log).
+    struct Seen {
+        wchar_t cls[48];
+        RECT rc;
+    };
+    Seen seen[16];
+    int seenCount = 0;
+    LONG maxRight = notifyRc.left;
+
+    for (HWND child = FindWindowExW(notify, NULL, NULL, NULL);
+         child && n < kMaxCells;
+         child = FindWindowExW(notify, child, NULL, NULL)) {
+        if (!IsWindowVisible(child)) {
+            continue;
+        }
+
+        wchar_t cls[64] = {};
+        GetClassNameW(child, cls, ARRAYSIZE(cls));
+
+        RECT rc;
+        if (!GetWindowRect(child, &rc)) {
+            continue;
+        }
+
+        if (seenCount < 16) {
+            lstrcpynW(seen[seenCount].cls, cls, ARRAYSIZE(seen[seenCount].cls));
+            seen[seenCount].rc = rc;
+            seenCount++;
+        }
+
+        if (wcscmp(cls, L"TrayShowDesktopButtonWClass") == 0) {
+            boundary = rc.left;  // the thin "show desktop" sliver
+            continue;
+        }
+
+        if (rc.right > maxRight) {
+            maxRight = rc.right;
+        }
+
+        if (wcscmp(cls, L"TrayClockWClass") == 0) {
+            if (wantClock) {
+                AddCell(cells, n, rc, false, cls);
+            }
+        } else if (wcscmp(cls, L"SysPager") == 0) {
+            if (wantTray) {
+                for (HWND tb = FindWindowExW(child, NULL, L"ToolbarWindow32", NULL);
+                     tb;
+                     tb = FindWindowExW(child, tb, L"ToolbarWindow32", NULL)) {
+                    if (IsWindowVisible(tb)) {
+                        AddToolbarCells(tb, cells, n);
+                    }
+                }
+            }
+        } else {
+            // Chevron button, language indicator, or any other small control
+            // (possibly the notification button) that we don't know by name.
+            int cw = rc.right - rc.left;
+            if (wantTray && cw >= 10 && cw <= 120) {
+                AddCell(cells, n, rc, false, cls);
+            }
+        }
+    }
+
+    // Fallback for controls we could not see (e.g. the notification button):
+    // any free span between the last known control and the right limit
+    // becomes one more cell.
+    if (wantTray && boundary - maxRight >= 16 && n < kMaxCells) {
+        RECT gap = { maxRight, notifyRc.top, boundary, notifyRc.bottom };
+        AddCell(cells, n, gap, false, L"(gap)");
+    }
+
+    // Sort by horizontal position.
+    for (int i = 1; i < n; i++) {
+        Cell key = cells[i];
+        int j = i - 1;
+        while (j >= 0 && cells[j].rc.left > key.rc.left) {
+            cells[j + 1] = cells[j];
+            j--;
+        }
+        cells[j + 1] = key;
+    }
+
+    // Log what was found whenever it changes, to help diagnose other builds.
+    static int s_lastSignature = -1;
+    int signature = n * 17 + seenCount;
+    for (int i = 0; i < n; i++) {
+        signature = signature * 31 + cells[i].rc.left * 7 + cells[i].rc.right;
+    }
+    for (int i = 0; i < seenCount; i++) {
+        signature = signature * 31 + seen[i].rc.left * 5 + seen[i].rc.right;
+    }
+    if (signature != s_lastSignature) {
+        s_lastSignature = signature;
+        Wh_Log(L"Tray children seen: %d (right limit x=%d)", seenCount, (int)boundary);
+        for (int i = 0; i < seenCount; i++) {
+            Wh_Log(L"  child %ls  x=%d..%d", seen[i].cls,
+                   (int)seen[i].rc.left, (int)seen[i].rc.right);
+        }
+        Wh_Log(L"Tray cells: %d", n);
+        for (int i = 0; i < n; i++) {
+            Wh_Log(L"  [%d] %ls  x=%d..%d", i, cells[i].cls,
+                   (int)cells[i].rc.left, (int)cells[i].rc.right);
+        }
+    }
+
+    return n;
+}
+
+// Merges narrow neighbouring cells so each slot is about as wide as it is tall.
+static int PackCells(const Cell *cells, int n, int minWidth, RECT *out, int maxOut) {
+    int count = 0;
+    RECT grp = {};
+    bool has = false;
+
+    auto flush = [&]() {
+        if (has && count < maxOut) {
+            out[count++] = grp;
+        }
+        has = false;
+    };
+
+    for (int i = 0; i < n; i++) {
+        const Cell &c = cells[i];
+        if (c.standalone) {
+            flush();
+            if (count < maxOut) {
+                out[count++] = c.rc;
+            }
+            continue;
+        }
+        if (has && c.rc.left - grp.right > 12) {
+            flush();
+        }
+        if (!has) {
+            grp = c.rc;
+            has = true;
+        } else {
+            RECT merged;
+            UnionRect(&merged, &grp, &c.rc);
+            grp = merged;
+        }
+        if (grp.right - grp.left >= minWidth) {
+            flush();
+        }
+    }
+    flush();
+    return count;
+}
+
+// ===================== Helper window (Start / tray / clock frames) =====================
+
+static const wchar_t kOverlayClass[] = L"WindhawkMinecraftHotbarWin10Overlay";
+
+static HWND g_overlay = NULL;
+static bool g_overlayShown = false;
+static RECT g_lastBar = {};
+static RECT g_lastSlots[kMaxSlots] = {};
+static int g_lastCount = -1;
+
+static LRESULT CALLBACK OverlayProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
+    if (msg == WM_NCHITTEST) {
+        return HTTRANSPARENT;
+    }
+    return DefWindowProcW(hwnd, msg, wParam, lParam);
+}
+
+static void HideOverlay() {
+    if (g_overlay && g_overlayShown) {
+        ShowWindow(g_overlay, SW_HIDE);
+        g_overlayShown = false;
+        g_lastCount = -1;
+    }
+}
+
+static bool IsFullscreenBusy() {
+    QUERY_USER_NOTIFICATION_STATE state;
+    if (SUCCEEDED(SHQueryUserNotificationState(&state))) {
+        return state == QUNS_BUSY ||
+               state == QUNS_RUNNING_D3D_FULL_SCREEN ||
+               state == QUNS_PRESENTATION_MODE;
+    }
+    return false;
+}
+
+static void UpdateOverlay() {
+    if (!g_overlay) {
+        return;
+    }
+
+    HWND tray = FindWindowW(L"Shell_TrayWnd", NULL);
+    DWORD trayPid = 0;
+    if (tray) {
+        GetWindowThreadProcessId(tray, &trayPid);
+    }
+    if (!tray || trayPid != GetCurrentProcessId() || !IsWindowVisible(tray) || IsFullscreenBusy()) {
+        HideOverlay();
+        return;
+    }
+
+    RECT bar;
+    GetWindowRect(tray, &bar);
+    int w = bar.right - bar.left;
+    int h = bar.bottom - bar.top;
+    if (w <= 0 || h <= 0) {
+        HideOverlay();
+        return;
+    }
+
+    RECT slots[kMaxSlots] = {};
+    int count = 0;
+
+    bool horizontal = w >= h;
+
+    if (g_frameStart) {
+        HWND start = FindWindowExW(tray, NULL, L"Start", NULL);
+        if (start && IsWindowVisible(start)) {
+            RECT rc;
+            if (GetWindowRect(start, &rc) && count < kMaxSlots) {
+                slots[count++] = AppSlot(rc);
+            }
+        }
+    }
+
+    if (horizontal && (g_frameTray || g_frameClock)) {
+        Cell cells[kMaxCells];
+        int n = CollectTrayCells(tray, cells, g_frameTray, g_frameClock);
+
+        RECT packed[kMaxSlots];
+        int np = 0;
+        if (g_singleTraySlot && n > 0) {
+            RECT all = cells[0].rc;
+            for (int i = 1; i < n; i++) {
+                RECT u;
+                UnionRect(&u, &all, &cells[i].rc);
+                all = u;
+            }
+            all.left -= 4;  // free space on the left of the tray
+            packed[np++] = all;
+        } else {
+            np = PackCells(cells, n, h, packed, kMaxSlots);
+        }
+        for (int i = 0; i < np && count < kMaxSlots; i++) {
+            RECT s = packed[i];
+            s.top = bar.top;       // same height as the app slots
+            s.bottom = bar.bottom;
+            slots[count++] = s;
+        }
+    }
+
+    for (int i = 0; i < count; i++) {
+        OffsetRect(&slots[i], -bar.left, -bar.top);
+    }
+
+    bool same = g_overlayShown && EqualRect(&bar, &g_lastBar) && count == g_lastCount;
+    for (int i = 0; same && i < count; i++) {
+        same = EqualRect(&slots[i], &g_lastSlots[i]) != 0;
+    }
+    if (same) {
+        return;
+    }
+
+    // 32-bit top-down bitmap; untouched pixels stay fully transparent.
+    BITMAPINFO bi = {};
+    bi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+    bi.bmiHeader.biWidth = w;
+    bi.bmiHeader.biHeight = -h;
+    bi.bmiHeader.biPlanes = 1;
+    bi.bmiHeader.biBitCount = 32;
+    bi.bmiHeader.biCompression = BI_RGB;
+
+    HDC screen = GetDC(NULL);
+    HDC mem = CreateCompatibleDC(screen);
+    void *bits = NULL;
+    HBITMAP bmp = CreateDIBSection(screen, &bi, DIB_RGB_COLORS, &bits, NULL, 0);
+
+    if (!screen || !mem || !bmp || !bits) {
+        Wh_Log(L"Overlay: failed to create bitmap");
+        if (bmp) DeleteObject(bmp);
+        if (mem) DeleteDC(mem);
+        if (screen) ReleaseDC(NULL, screen);
+        return;
+    }
+
+    HGDIOBJ oldBmp = SelectObject(mem, bmp);
+    ZeroMemory(bits, (size_t)w * h * 4);
+
+    for (int i = 0; i < count; i++) {
+        RenderSlot((DWORD *)bits, w, h, slots[i], false, false);
+    }
+
+    // Directly BELOW the taskbar in z-order, so its icons and text are on top.
+    SetWindowPos(g_overlay, tray, bar.left, bar.top, w, h,
+                 SWP_NOACTIVATE | SWP_SHOWWINDOW);
+
+    POINT dst = { bar.left, bar.top };
+    SIZE size = { w, h };
+    POINT src = { 0, 0 };
+    BLENDFUNCTION blend = {};
+    blend.BlendOp = AC_SRC_OVER;
+    blend.SourceConstantAlpha = 255;
+    blend.AlphaFormat = AC_SRC_ALPHA;
+
+    if (!UpdateLayeredWindow(g_overlay, screen, &dst, &size, mem, &src, 0, &blend, ULW_ALPHA)) {
+        Wh_Log(L"Overlay: UpdateLayeredWindow failed (%lu)", GetLastError());
+    }
+
+    SelectObject(mem, oldBmp);
+    DeleteObject(bmp);
+    DeleteDC(mem);
+    ReleaseDC(NULL, screen);
+
+    g_overlayShown = true;
+    g_lastBar = bar;
+    g_lastCount = count;
+    for (int i = 0; i < count; i++) {
+        g_lastSlots[i] = slots[i];
+    }
+}
+
+// ===================== Worker thread =====================
+
+static HANDLE g_stopEvent = NULL;
+static HANDLE g_thread = NULL;
+
+static DWORD WINAPI WorkerThread(LPVOID) {
+    HINSTANCE hInst = GetModuleHandleW(NULL);
+
+    if (g_frameStart || g_frameTray || g_frameClock) {
+        WNDCLASSW wc = {};
+        wc.lpfnWndProc = OverlayProc;
+        wc.hInstance = hInst;
+        wc.lpszClassName = kOverlayClass;
+        RegisterClassW(&wc);
+
+        g_overlay = CreateWindowExW(
+            WS_EX_LAYERED | WS_EX_TRANSPARENT | WS_EX_TOOLWINDOW |
+                WS_EX_NOACTIVATE | WS_EX_TOPMOST,
+            kOverlayClass, L"", WS_POPUP,
+            0, 0, 1, 1, NULL, NULL, hInst, NULL);
+
+        if (!g_overlay) {
+            Wh_Log(L"Overlay: failed to create window (%lu)", GetLastError());
+        }
+    }
+
+    ULONGLONG lastTick = 0;
+    while (true) {
+        DWORD wait = MsgWaitForMultipleObjects(1, &g_stopEvent, FALSE, 250, QS_ALLINPUT);
+        if (wait == WAIT_OBJECT_0) {
+            break;
+        }
+
+        MSG msg;
+        while (PeekMessageW(&msg, NULL, 0, 0, PM_REMOVE)) {
+            TranslateMessage(&msg);
+            DispatchMessageW(&msg);
+        }
+
+        ULONGLONG now = GetTickCount64();
+        if (now - lastTick >= 250) {
+            lastTick = now;
+            // Windows resets the transparency (e.g. when Start opens),
+            // so it is re-applied on every tick.
+            ApplyTransparency(true);
+            UpdateOverlay();
+        }
+    }
+
+    if (g_overlay) {
+        DestroyWindow(g_overlay);
+        g_overlay = NULL;
+    }
+    UnregisterClassW(kOverlayClass, hInst);
+    g_overlayShown = false;
+    return 0;
+}
+
+// ===================== Mod entry points =====================
+
+BOOL Wh_ModInit(void) {
+    g_frameStart = Wh_GetIntSetting(L"frameStartButton") != 0;
+    g_frameTray = Wh_GetIntSetting(L"frameTray") != 0;
+    g_frameClock = Wh_GetIntSetting(L"frameClock") != 0;
+    g_squareAppSlots = Wh_GetIntSetting(L"squareAppSlots") != 0;
+    g_singleTraySlot = Wh_GetIntSetting(L"singleTraySlot") != 0;
+
+    HMODULE hExplorer = GetModuleHandleW(NULL);
+
+    WindhawkUtils::SYMBOL_HOOK hooks[] = {
+        {
+            { L"private: void __cdecl CTaskBtnGroup::_DrawBar(struct HDC__ *,struct BUTTONRENDERINFO const &,struct BUTTONRENDERINFOSTATES const &)" },
+            (void **)&CTaskBtnGroup__DrawBar_orig,
+            (void *)CTaskBtnGroup__DrawBar_hook,
+            FALSE
+        }
+    };
+
+    if (!WindhawkUtils::HookSymbols(hExplorer, hooks, ARRAYSIZE(hooks))) {
+        Wh_Log(L"Failed to hook CTaskBtnGroup::_DrawBar");
+        return FALSE;
+    }
+
+    g_stopEvent = CreateEventW(NULL, TRUE, FALSE, NULL);
+    if (g_stopEvent) {
+        g_thread = CreateThread(NULL, 0, WorkerThread, NULL, 0, NULL);
+        if (!g_thread) {
+            Wh_Log(L"Failed to start worker thread");
+        }
+    } else {
+        Wh_Log(L"Failed to create stop event");
+    }
+
+    Wh_Log(L"Minecraft Hotbar (Win10) fullbar loaded");
+    return TRUE;
+}
+
+void Wh_ModUninit(void) {
+    if (g_stopEvent) {
+        SetEvent(g_stopEvent);
+    }
+    if (g_thread) {
+        WaitForSingleObject(g_thread, 3000);
+        CloseHandle(g_thread);
+        g_thread = NULL;
+    }
+    if (g_stopEvent) {
+        CloseHandle(g_stopEvent);
+        g_stopEvent = NULL;
+    }
+
+    // Give the taskbar its normal background back.
+    ApplyTransparency(false);
+}
